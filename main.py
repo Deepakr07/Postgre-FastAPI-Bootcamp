@@ -47,13 +47,21 @@ async def create_questions(question:QuestionBase,db:db_dependency):
         db.add(db_choice)
     db.commit()
 
+@app.get("/questions/")
+async def read_all_questions(db:db_dependency):
+    result = db.query(models.Questions).all()
+    if not result:
+        raise HTTPException(status_code=)
+
+
+#api end point to retreive all the questions based on the question id
 @app.get("/questions/{question_id}")
 async def read_questions(question_id: int, db: db_dependency):
     result = db.query(models.Questions).filter(models.Questions.id == question_id).first()
     if not result:
         raise HTTPException(status_code=404,detail='Question is not found')
     return result
-
+#api end point to retreive all the choices by providing the corresponding question id
 @app.get("/choices/{question_id}")
 async def read_choices(question_id: int, db: db_dependency):
     result = db.query(models.Choices).filter(models.Choices.question_id == question_id).all()
