@@ -39,11 +39,7 @@ async def create_questions(question:QuestionBase,db:db_dependency):
     db.commit()
     db.refresh(db_question)
     for choice in question.choices:
-        db_choice   = models.Choices( 
-  
-        choice_text = choice.choice_text, 
-        is_correct  = choice.is_correct,
-        question_id = db_question.id)
+        db_choice   = models.Choices(choice_text = choice.choice_text, is_correct  = choice.is_correct,question_id = db_question.id)
         db.add(db_choice)
     db.commit()
 
@@ -51,7 +47,7 @@ async def create_questions(question:QuestionBase,db:db_dependency):
 async def read_all_questions(db:db_dependency):
     result = db.query(models.Questions).all()
     if not result:
-        raise HTTPException(status_code=)
+        raise HTTPException(status_code=404)
 
 
 #api end point to retreive all the questions based on the question id
