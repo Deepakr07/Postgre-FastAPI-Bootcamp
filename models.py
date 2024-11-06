@@ -1,7 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String 
 from database import Base
 
-#creaing tables that is to be displayed in the database
+#creaing the schema of the tables that is to be displayed in the database
 
 #questions table
 class Questions(Base):

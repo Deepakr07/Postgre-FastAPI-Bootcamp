@@ -24,4 +24,4 @@ engine = create_engine(URL_DATABASE)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False,  bind=engine)
 
 #used to define the base class for all the models(that is database tables)
-Base = declarative_base
+Base = declarative_base()
