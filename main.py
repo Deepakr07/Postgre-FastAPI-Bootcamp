@@ -48,7 +48,7 @@ async def create_questions(question:QuestionBase,db:db_dependency):
     db.commit()
 
 @app.get("/questions/{question_id}")
-async def read_question(question_id: int, db: db_dependency):
+async def read_questions(question_id: int, db: db_dependency):
     result = db.query(models.Questions).filter(models.Questions.id == question_id).first()
     if not result:
         raise HTTPException(status_code=404,detail='Question is not found')
